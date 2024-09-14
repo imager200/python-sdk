@@ -34,3 +34,4 @@ imager200_python_sdk/test
 setup.py
 tox.ini
 test-requirements.txt
+.github/workflows/**

@@ -1,4 +1,8 @@
 
+[![PyPI version](https://img.shields.io/pypi/v/imager200-python-sdk)](https://pypi.org/project/imager200-python-sdk/)
+
+![client](https://www.imager200.io/assets/images/main-logo-compressed.png)
+
 
 This package provides bindings for interacting with the imager200 API. It is auto-generated from the official open api specs: https://www.imager200.io/imager200.json
 
@@ -19,9 +23,8 @@ Python 3.7+
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
+pip install imager200-python-sdk
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git`)
 
 Then import the package:
 ```python
@@ -36,10 +39,9 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 import imager200_python_sdk
 from imager200_python_sdk.rest import ApiException
-from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.imager200.io
-# See configuration.py for a list of all supported configuration parameters.
+
+
 configuration = imager200_python_sdk.Configuration(
     host = "https://api.imager200.io"
 )
@@ -50,24 +52,21 @@ configuration = imager200_python_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
+configuration.api_key['ApiKeyAuth'] = "YOUR_API_KEY"
 
 # Enter a context with an instance of the API client
 with imager200_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = imager200_python_sdk.BlendApi(api_client)
-    payload = imager200_python_sdk.BlendRequest() # BlendRequest | request
+    api_instance = imager200_python_sdk.BlurhashApi(api_client)
+    with open("/some/path/image.jpeg", "rb") as f:
+        body = f.read() # bytearray | image binary data
 
     try:
-        api_response = api_instance.blend_async_post(payload)
-        print("The response of BlendApi->blend_async_post:\n")
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling BlendApi->blend_async_post: %s\n" % e)
+        api_response = api_instance.blurhash_sync_post(body)
+        with open("/some/path/result.jpeg", "wb") as result:
+            result.write(api_response)
+    except Exception as e:
+        print("Exception when calling BlurhashApi->blurhash_sync_post: %s\n" % e)
 
 ```
 

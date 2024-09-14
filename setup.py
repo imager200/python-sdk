@@ -31,6 +31,12 @@ REQUIRES = [
     "typing-extensions >= 4.7.1",
 ]
 
+from os import path
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, "README.md")) as f:
+    long_description = f.read()
+
 setup(
     name=NAME,
     version=VERSION,
@@ -43,8 +49,6 @@ setup(
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     long_description_content_type='text/markdown',
-    long_description="""\
-      imager200 is an API for image processing and image workflow automation. This package provides bindings for interacting with the imager200 API in Python.
-    """,  # noqa: E501
+    long_description=long_description,
     package_data={"imager200_python_sdk": ["py.typed"]},
 )

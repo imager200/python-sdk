@@ -20,8 +20,6 @@ Python 3.7+
 ## Installation & Usage
 ### pip install
 
-If the python package is hosted on a repository, you can install directly using:
-
 ```sh
 pip install imager200-python-sdk
 ```
@@ -32,8 +30,6 @@ import imager200_python_sdk
 ```
 
 ## Getting Started
-
-Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
 
